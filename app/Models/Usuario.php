@@ -5,20 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
-{ 
-    protected $primaryKey = 'id_800';
-
-
-    protected $fillable = [
-    'id_800',
-    'nombre_800',
-    'contra_800',
-    'fecha_crea_800',
-    'id_700',
-];
-
-public function cargo()
 {
-    return $this->belongsTo(Cargo::class, 'id_700', 'id_700');
-}
+    protected $table = 'Usuarios';
+    
+    protected $primaryKey = 'id';
+    
+    protected $fillable = [
+        'nombre',
+        'correo',
+        'password',
+        'rol',
+    ];
+    
+    protected $hidden = [
+        'password',
+    ];
+    
+    protected $casts = [
+        'rol' => 'string',
+    ];
+    
+    // If you need timestamps, but your table doesn't have them
+    public $timestamps = false;
+    
+    // If you want to rename the default timestamp fields
+    // const CREATED_AT = 'fecha_crea_800';
+    // const UPDATED_AT = 'fecha_act_800';
 }
