@@ -94,4 +94,4 @@ Route::get('/api/ventas/{venta}/medicamentos', function(Venta $venta) {
 //-Route::get('/menu', [MenuController::class, 'index'])->name('menu.principal');
 
 // Or this alternative syntax:
-Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu.principal');
+Route::get('/', 'App\Http\Controllers\MenuController@index')->name('menu.principal');

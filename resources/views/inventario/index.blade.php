@@ -9,14 +9,68 @@
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #f2f2f2; }
         tr:hover { background-color: #f5f5f5; }
-        .action-links a { margin-right: 10px; text-decoration: none; color: #3490dc; }
-        .action-links a:hover { text-decoration: underline; }
-        .low-stock { background-color: #ffdddd; }
+        .home-icon {
+            font-size: 24px;
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .create-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .create-btn:hover {
+            background-color: #45a049;
+        }
+        .action-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3490dc;
+        }
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+        .alert-success {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
+        .low-stock { 
+            background-color: #ffdddd; 
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #e3342f;
+            cursor: pointer;
+            padding: 0;
+            font: inherit;
+        }
+        .delete-btn:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h1>Inventario de Medicamentos</h1>
-    <a href="/inventario/create">Agregar al Inventario</a>
+    <div class="header-container">
+        <a href="/" class="home-icon">🏠</a>
+        <h1>Inventario de Medicamentos</h1>
+    </div>
+
+   
 
     <table>
         <thead>

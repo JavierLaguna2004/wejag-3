@@ -32,18 +32,18 @@
         @if($venta_id)
         <div class="form-group">
             <label for="id_medicamento">Medicamento:</label>
-<select name="id_medicamento" id="id_medicamento" required>
+            <select name="id_medicamento" id="id_medicamento" required>
     <option value="">Seleccione un medicamento</option>
     @foreach($medicamentos as $medicamento)
-        <option value="{{ $medicamento->id }}">
-            {{ $medicamento->nombre }} 
-            @isset($medicamento->pivot->cantidad)
-                ({{ $medicamento->pivot->cantidad }} vendidos)
-            @endisset
+        <option 
+            value="{{ $medicamento['id'] }}" 
+            data-cantidad="{{ $medicamento['cantidad_vendida'] }}"
+        >
+            {{ $medicamento['nombre'] }} ({{ $medicamento['cantidad_vendida'] }} vendidos)
         </option>
     @endforeach
 </select>
-        </div>
+ </div>
         @endif
         
         <div class="form-group">
@@ -59,5 +59,19 @@
         <button type="submit">Registrar Devolución</button>
     </form>
     <a href="/devolucion">← Volver</a>
+
+    <script>
+        document.getElementById('id_medicamento').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const maxCantidad = selectedOption.getAttribute('data-cantidad');
+            
+            document.getElementById('cantidad').max = maxCantidad;
+            
+            const cantidadInput = document.getElementById('cantidad');
+            if (cantidadInput.value > maxCantidad) {
+                cantidadInput.value = maxCantidad;
+            }
+        });
+    </script>
 </body>
 </html>

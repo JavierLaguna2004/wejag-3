@@ -29,11 +29,24 @@
         .action-links a:hover {
             text-decoration: underline;
         }
+        .home-icon {
+            font-size: 24px;
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 
-<h1>Lista de Usuarios</h1>
+<div class="header-container">
+    <a href="/" class="home-icon">🏠</a>
+    <h1>Lista de Usuarios</h1>
+</div>
 
 <a href="/usuario/create" style="display: inline-block; margin-bottom: 20px; padding: 8px 15px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Crear Usuario</a>
 

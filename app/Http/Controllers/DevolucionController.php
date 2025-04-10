@@ -20,12 +20,19 @@ class DevolucionController extends Controller
     public function create($venta_id = null)
     {
         $ventas = Venta::with(['detalles.medicamento'])->get();
-        $medicamentos = [];
+        $medicamentos = collect(); // Inicializa una colección vacía
         
         if ($venta_id) {
-            $ventaSeleccionada = Venta::with(['detalles.medicamento'])->find($venta_id);
+            $ventaSeleccionada = Venta::with(['detalles' => function($query) {
+                $query->with('medicamento'); // Asegura que se cargue el medicamento con el pivot
+            }])->find($venta_id);
+            
             $medicamentos = $ventaSeleccionada->detalles->map(function ($detalle) {
-                return $detalle->medicamento;
+                return [
+                    'id' => $detalle->medicamento->id,
+                    'nombre' => $detalle->medicamento->nombre,
+                    'cantidad_vendida' => $detalle->cantidad, // ← Cantidad desde el pivot
+                ];
             });
         }
         
@@ -34,6 +41,8 @@ class DevolucionController extends Controller
 
     public function store(Request $request)
     {
+        \Log::debug('Datos recibidos:', $request->all()); // ← Añade esta línea
+    
         DB::beginTransaction();
         
         try {
@@ -61,7 +70,8 @@ class DevolucionController extends Controller
                 'id_venta' => $request->id_venta,
                 'id_medicamento' => $request->id_medicamento,
                 'cantidad' => $request->cantidad,
-                'motivo' => $request->motivo
+                'motivo' => $request->motivo,
+                'fecha' => now() // o Carbon::now()
             ]);
             
             // Actualizar inventario

@@ -1,25 +1,74 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Principal - Sistema Farmacia</title>
+@extends('layouts.app')
+
+@section('title', 'Menú Principal')
+
+@section('content')
+    <div class="menu-grid">
+        <!-- Módulo de Usuarios -->
+        <div class="menu-card">
+            <h2><i class="fas fa-users"></i> Usuarios</h2>
+            <ul class="menu-links">
+                <li><a href="/usuario"><i class="fas fa-list"></i> Lista de Usuarios</a></li>
+                <li><a href="/usuario/create"><i class="fas fa-user-plus"></i> Crear Usuario</a></li>
+            </ul>
+        </div>
+        
+        <!-- Módulo de Proveedores -->
+        <div class="menu-card">
+            <h2><i class="fas fa-truck"></i> Proveedores</h2>
+            <ul class="menu-links">
+                <li><a href="/proveedor"><i class="fas fa-list"></i> Lista de Proveedores</a></li>
+                <li><a href="/proveedor/create"><i class="fas fa-plus-circle"></i> Crear Proveedor</a></li>
+            </ul>
+        </div>
+        
+        <!-- Módulo de Medicamentos -->
+        <div class="menu-card">
+            <h2><i class="fas fa-pills"></i> Medicamentos</h2>
+            <ul class="menu-links">
+                <li><a href="/medicamento"><i class="fas fa-boxes"></i> Inventario</a></li>
+                <li><a href="/medicamento/create"><i class="fas fa-plus-square"></i> Agregar Medicamento</a></li>
+            </ul>
+        </div>
+        
+        <!-- Módulo de Ventas -->
+        <div class="menu-card">
+            <h2><i class="fas fa-cash-register"></i> Ventas</h2>
+            <ul class="menu-links">
+                <li><a href="/venta"><i class="fas fa-receipt"></i> Registro de Ventas</a></li>
+                <li><a href="/venta/create"><i class="fas fa-cart-plus"></i> Nueva Venta</a></li>
+            </ul>
+        </div>
+        
+        <!-- Módulo de Devoluciones -->
+        <div class="menu-card">
+            <h2><i class="fas fa-exchange-alt"></i> Devoluciones</h2>
+            <ul class="menu-links">
+                <li><a href="/devolucion"><i class="fas fa-history"></i> Historial</a></li>
+                <li><a href="/devolucion/create"><i class="fas fa-undo"></i> Registrar Devolución</a></li>
+            </ul>
+        </div>
+
+    <!-- Módulo de Entradas -->
+    <div class="menu-card">
+        <h2><i class="fas fa-arrow-down"></i> Entradas</h2>
+        <ul class="menu-links">
+            <li><a href="/entrada-inventario"><i class="fas fa-list"></i> Registro de Entradas</a></li>
+            <li><a href="/entrada-inventario/create"><i class="fas fa-plus-circle"></i> Nueva Entrada</a></li>
+        </ul>
+    </div>
+
+     <!-- Módulo de Inventario -->
+     <div class="menu-card">
+        <h2><i class="fas fa-boxes"></i> Inventario</h2>
+        <ul class="menu-links">
+            <li><a href="/inventario"><i class="fas fa-clipboard-list"></i> Stock Actual</a></li>         
+        </ul>
+    </div>   
+</div>
+
+    @push('styles')
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -41,6 +90,11 @@
             margin-top: 0;
             border-bottom: 2px solid #3490dc;
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .menu-card h2 i {
+            margin-right: 10px;
         }
         .menu-links {
             list-style: none;
@@ -50,7 +104,8 @@
             margin-bottom: 8px;
         }
         .menu-links a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 8px 12px;
             background: #f8f9fa;
             border-radius: 4px;
@@ -62,77 +117,11 @@
             background: #3490dc;
             color: white;
         }
-        .header {
-            background: #3490dc;
-            color: white;
-            padding: 15px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
+        .menu-links i {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Sistema de Gestión Farmacéutica</h1>
-        </div>
-        
-        <div class="menu-grid">
-            <!-- Módulo de Usuarios -->
-            <div class="menu-card">
-                <h2>Usuarios</h2>
-                <ul class="menu-links">
-                    <li><a href="/usuario">Lista de Usuarios</a></li>
-                    <li><a href="/usuario/create">Crear Usuario</a></li>
-                </ul>
-            </div>
-            
-            <!-- Módulo de Proveedores -->
-            <div class="menu-card">
-                <h2>Proveedores</h2>
-                <ul class="menu-links">
-                    <li><a href="/proveedor">Lista de Proveedores</a></li>
-                    <li><a href="/proveedor/create">Crear Proveedor</a></li>
-                </ul>
-            </div>
-            
-            <!-- Módulo de Medicamentos -->
-            <div class="menu-card">
-                <h2>Medicamentos</h2>
-                <ul class="menu-links">
-                    <li><a href="/medicamento">Inventario</a></li>
-                    <li><a href="/medicamento/create">Agregar Medicamento</a></li>
-                </ul>
-            </div>
-            
-            <!-- Módulo de Ventas -->
-            <div class="menu-card">
-                <h2>Ventas</h2>
-                <ul class="menu-links">
-                    <li><a href="/venta">Registro de Ventas</a></li>
-                    <li><a href="/venta/create">Nueva Venta</a></li>
-                </ul>
-            </div>
-            
-            <!-- Módulo de Devoluciones -->
-            <div class="menu-card">
-                <h2>Devoluciones</h2>
-                <ul class="menu-links">
-                    <li><a href="/devolucion">Historial</a></li>
-                    <li><a href="/devolucion/create">Registrar Devolución</a></li>
-                </ul>
-            </div>
-            
-            <!-- Módulo de Reportes -->
-            <div class="menu-card">
-                <h2>Reportes</h2>
-                <ul class="menu-links">
-                    <li><a href="#">Ventas por Período</a></li>
-                    <li><a href="#">Inventario Bajo</a></li>
-                    <li><a href="#">Productos Más Vendidos</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    @endpush
+@endsection

@@ -11,11 +11,46 @@
         tr:hover { background-color: #f5f5f5; }
         .action-links a { margin-right: 10px; text-decoration: none; color: #3490dc; }
         .action-links a:hover { text-decoration: underline; }
+        .home-icon {
+            font-size: 24px;
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .create-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .create-btn:hover {
+            background-color: #45a049;
+        }
+        .alert-success {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
-    <h1>Lista de Medicamentos</h1>
-    <a href="/medicamento/create">Crear Medicamento</a>
+    <div class="header-container">
+        <a href="/" class="home-icon">🏠</a>
+        <h1>Lista de Medicamentos</h1>
+    </div>
+
+    <a href="/medicamento/create" class="create-btn">Crear Medicamento</a>
 
     <table>
         <thead>
