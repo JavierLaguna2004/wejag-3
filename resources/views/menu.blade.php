@@ -75,7 +75,7 @@
                 <li><a href="/reportes/medicamentos-vendidos"><i class="fas fa-pills"></i> Medicamentos Vendidos</a></li>
                 <li><a href="/reportes/inventario"><i class="fas fa-box-open"></i> Reporte de Inventario</a></li>
                 <li><a href="/reportes/devoluciones"><i class="fas fa-exchange-alt"></i> Reporte de Devoluciones</a></li>
-                <li><a href="/reportes/proveedores-medicamentos"><i class="fas fa-truck"></i> Proveedores y Medicamentos</a></li>
+                <!-- <li><a href="/reportes/proveedores-medicamentos"><i class="fas fa-truck"></i> Proveedores y Medicamentos</a></li> -->
             </ul>
         </div>
     </div>
