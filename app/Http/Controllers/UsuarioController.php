@@ -71,7 +71,7 @@ class UsuarioController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:100',
-            'correo' => 'required|email|unique:Usuarios,correo,'.$id.'|max:100',
+            'correo' => 'required|email|unique:usuarios,correo,'.$id.'|max:100',
             'password' => 'nullable|string|min:8', // Opcional para actualización
             'rol' => 'required|in:basico,root'
         ]);
