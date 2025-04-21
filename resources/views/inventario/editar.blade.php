@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,3 +42,4 @@
     <a href="/inventario">← Volver</a>
 </body>
 </html>
+@endsection

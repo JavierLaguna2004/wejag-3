@@ -54,7 +54,43 @@
             width: 20px;
             text-align: center;
         }
-        
+
+        /* Submenu para reportes */
+        .submenu {
+            list-style: none;
+            padding-left: 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.show {
+            max-height: 500px; /* Ajusta según necesidad */
+        }
+
+        .submenu li a {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            background-color: #34495e;
+        }
+
+        .submenu li a:hover {
+            background-color: #2980b9;
+        }
+
+        .has-submenu > a::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-left: auto;
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+
+        .has-submenu.active > a::after {
+            transform: rotate(180deg);
+        }
+
         /* Contenido principal */
         .main-content {
             margin-left: 250px;
@@ -114,11 +150,36 @@
                 <a href="/devolucion"><i class="fas fa-exchange-alt"></i> Devoluciones</a>
             </li>
             <li class="{{ request()->is('entrada-inventario*') ? 'active' : '' }}">
-        <a href="/entrada-inventario"><i class="fas fa-arrow-down"></i> Entradas</a>
-    </li>
-    <li class="{{ request()->is('inventario*') ? 'active' : '' }}">
-        <a href="/inventario"><i class="fas fa-boxes"></i> Inventario</a>
-    </li>
+                <a href="/entrada-inventario"><i class="fas fa-arrow-down"></i> Entradas</a>
+            </li>
+            <li class="{{ request()->is('inventario*') ? 'active' : '' }}">
+                <a href="/inventario"><i class="fas fa-boxes"></i> Inventario</a>
+            </li>
+            <li class="has-submenu {{ request()->is('reportes*') ? 'active' : '' }}">
+                <a href="#" onclick="toggleSubmenu(this.parentElement)">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+                <ul class="submenu {{ request()->is('reportes*') ? 'show' : '' }}">
+                    <li class="{{ request()->is('reportes') ? 'active' : '' }}">
+                        <a href="/reportes"><i class="fas fa-chart-pie"></i> Menú Principal</a>
+                    </li>
+                    <li class="{{ request()->is('reportes/ventas*') ? 'active' : '' }}">
+                        <a href="/reportes/ventas"><i class="fas fa-receipt"></i> Ventas</a>
+                    </li>
+                    <li class="{{ request()->is('reportes/medicamentos-vendidos*') ? 'active' : '' }}">
+                        <a href="/reportes/medicamentos-vendidos"><i class="fas fa-pills"></i> Medicamentos Vendidos</a>
+                    </li>
+                    <li class="{{ request()->is('reportes/inventario*') ? 'active' : '' }}">
+                        <a href="/reportes/inventario"><i class="fas fa-box-open"></i> Inventario</a>
+                    </li>
+                    <li class="{{ request()->is('reportes/devoluciones*') ? 'active' : '' }}">
+                        <a href="/reportes/devoluciones"><i class="fas fa-exchange-alt"></i> Devoluciones</a>
+                    </li>
+                    <!-- <li class="{{ request()->is('reportes/proveedores-medicamentos*') ? 'active' : '' }}">
+                        <a href="/reportes/proveedores-medicamentos"><i class="fas fa-truck"></i> Proveedores</a>
+                    </li> -->
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -130,6 +191,23 @@
         
         @yield('content')
     </div>
+
+    <script>
+        function toggleSubmenu(element) {
+            event.preventDefault();
+            element.classList.toggle('active');
+            const submenu = element.querySelector('.submenu');
+            submenu.classList.toggle('show');
+        }
+
+        // Abrir automáticamente el submenu si está activo
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeSubmenu = document.querySelector('.has-submenu.active .submenu');
+            if (activeSubmenu) {
+                activeSubmenu.classList.add('show');
+            }
+        });
+    </script>
 
     @stack('scripts')
 </body>

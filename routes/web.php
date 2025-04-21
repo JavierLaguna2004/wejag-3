@@ -92,6 +92,13 @@ Route::get('/api/ventas/{venta}/medicamentos', function(Venta $venta) {
 });
 
 //-Route::get('/menu', [MenuController::class, 'index'])->name('menu.principal');
-
+Route::prefix('reportes')->group(function () {
+    Route::get('/', 'App\Http\Controllers\ReporteController@index')->name('reportes.index');
+    Route::get('/ventas', 'App\Http\Controllers\ReporteController@ventas')->name('reportes.ventas');
+    Route::get('/medicamentos-vendidos', 'App\Http\Controllers\ReporteController@medicamentosVendidos')->name('reportes.medicamentos-vendidos');
+    Route::get('/inventario', 'App\Http\Controllers\ReporteController@inventario')->name('reportes.inventario');
+    Route::get('/devoluciones', 'App\Http\Controllers\ReporteController@devoluciones')->name('reportes.devoluciones');
+    Route::get('/proveedores-medicamentos', 'App\Http\Controllers\ReporteController@proveedoresMedicamentos')->name('reportes.proveedores-medicamentos');
+});
 // Or this alternative syntax:
 Route::get('/', 'App\Http\Controllers\MenuController@index')->name('menu.principal');

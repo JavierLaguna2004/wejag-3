@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,3 +43,4 @@
     <a href="/devolucion">← Volver a la lista</a>
 </body>
 </html>
+@endsection

@@ -49,23 +49,36 @@
             </ul>
         </div>
 
-    <!-- Módulo de Entradas -->
-    <div class="menu-card">
-        <h2><i class="fas fa-arrow-down"></i> Entradas</h2>
-        <ul class="menu-links">
-            <li><a href="/entrada-inventario"><i class="fas fa-list"></i> Registro de Entradas</a></li>
-            <li><a href="/entrada-inventario/create"><i class="fas fa-plus-circle"></i> Nueva Entrada</a></li>
-        </ul>
-    </div>
+        <!-- Módulo de Entradas -->
+        <div class="menu-card">
+            <h2><i class="fas fa-arrow-down"></i> Entradas</h2>
+            <ul class="menu-links">
+                <li><a href="/entrada-inventario"><i class="fas fa-list"></i> Registro de Entradas</a></li>
+                <li><a href="/entrada-inventario/create"><i class="fas fa-plus-circle"></i> Nueva Entrada</a></li>
+            </ul>
+        </div>
 
-     <!-- Módulo de Inventario -->
-     <div class="menu-card">
-        <h2><i class="fas fa-boxes"></i> Inventario</h2>
-        <ul class="menu-links">
-            <li><a href="/inventario"><i class="fas fa-clipboard-list"></i> Stock Actual</a></li>         
-        </ul>
-    </div>   
-</div>
+        <!-- Módulo de Inventario -->
+        <div class="menu-card">
+            <h2><i class="fas fa-boxes"></i> Inventario</h2>
+            <ul class="menu-links">
+                <li><a href="/inventario"><i class="fas fa-clipboard-list"></i> Stock Actual</a></li>         
+            </ul>
+        </div>
+
+        <!-- Módulo de Reportes -->
+        <div class="menu-card">
+            <h2><i class="fas fa-chart-bar"></i> Reportes</h2>
+            <ul class="menu-links">
+                <li><a href="/reportes"><i class="fas fa-chart-pie"></i> Menú de Reportes</a></li>
+                <li><a href="/reportes/ventas"><i class="fas fa-receipt"></i> Reporte de Ventas</a></li>
+                <li><a href="/reportes/medicamentos-vendidos"><i class="fas fa-pills"></i> Medicamentos Vendidos</a></li>
+                <li><a href="/reportes/inventario"><i class="fas fa-box-open"></i> Reporte de Inventario</a></li>
+                <li><a href="/reportes/devoluciones"><i class="fas fa-exchange-alt"></i> Reporte de Devoluciones</a></li>
+                <li><a href="/reportes/proveedores-medicamentos"><i class="fas fa-truck"></i> Proveedores y Medicamentos</a></li>
+            </ul>
+        </div>
+    </div>
 
     @push('styles')
     <style>
@@ -73,6 +86,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            padding: 20px;
         }
         .menu-card {
             background: white;
@@ -92,13 +106,16 @@
             padding-bottom: 10px;
             display: flex;
             align-items: center;
+            font-size: 1.25rem;
         }
         .menu-card h2 i {
             margin-right: 10px;
+            font-size: 1.1rem;
         }
         .menu-links {
             list-style: none;
             padding: 0;
+            margin-top: 15px;
         }
         .menu-links li {
             margin-bottom: 8px;
@@ -112,6 +129,7 @@
             color: #2c3e50;
             text-decoration: none;
             transition: all 0.2s ease;
+            font-size: 0.9rem;
         }
         .menu-links a:hover {
             background: #3490dc;
@@ -121,6 +139,32 @@
             margin-right: 8px;
             width: 20px;
             text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Estilo específico para la tarjeta de reportes */
+        .menu-card:nth-child(8) {
+            grid-column: span 2;
+        }
+        .menu-card:nth-child(8) .menu-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+        .menu-card:nth-child(8) .menu-links li {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-card:nth-child(8) {
+                grid-column: span 1;
+            }
+            .menu-card:nth-child(8) .menu-links {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     @endpush
